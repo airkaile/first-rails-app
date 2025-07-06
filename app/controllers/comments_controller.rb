@@ -1,15 +1,15 @@
 class CommentsController < ApplicationController
   before_action :set_article
-  before_action :set_comment, except: [:create]
+  before_action :set_comment, except: [ :create ]
 
   def create
     @comment = @article.comments.build(comment_params)
-    
+
     if @comment.save
-      redirect_to article_path(@article), notice: 'Comment was successfully added.'
+      redirect_to article_path(@article), notice: "Comment was successfully added."
     else
-      flash.now[:alert] = 'Failed to add comment.'
-      render 'articles/show', status: :unprocessable_entity
+      flash.now[:alert] = "Failed to add comment."
+      render "articles/show", status: :unprocessable_entity
     end
   end
 
@@ -17,16 +17,16 @@ class CommentsController < ApplicationController
 
   def update
     if @comment.update(comment_params)
-      redirect_to @article, notice: 'Comment was successfully updated.'
+      redirect_to @article, notice: "Comment was successfully updated."
     else
-      flash.now[:alert] = 'Failed to update comment.'
+      flash.now[:alert] = "Failed to update comment."
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @comment.destroy
-    redirect_to article_path(@article), status: :see_other, notice: 'Comment was successfully deleted.'
+    redirect_to article_path(@article), status: :see_other, notice: "Comment was successfully deleted."
   end
 
   private

@@ -13,6 +13,6 @@ Rails.application.routes.draw do
   root "articles#index"
 
   resources :articles do
-    resources :comments, except: [:index, :new, :show]
+    resources :comments, except: [ :index, :new, :show ]
   end
 end
