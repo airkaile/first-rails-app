@@ -11,7 +11,7 @@
 </ul>
 
 <h2>Comments</h2>
-<%= render @article.comments %>
+<%= render @article.comments.select { |comment| comment.persisted? }, article: @article, comment: @comment %>
 
 <h2>Add a Comment:</h2>
-<%= render "comments/form", article: @article%>
+<%= render "comments/form", article: @article, comment: @comment%>
